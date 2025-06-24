@@ -1,0 +1,25 @@
+# Hello and welcome
+
+This document is meant as a review / for improving my own understanding of statistics. Use it if you can but I take no responsibility for what is right and wrong. It is meant to be very hands on with code. Most often only the output is shown, but if you want to see it it is all available on my github page. 
+
+## How to read the page. 
+
+The page is made up 
+
+:::{.column-margin}
+```{r echo=True}
+#| echo: false
+file.path(R.home("bin"), "R")
+```
+:::
+
+and now with python: 
+
+:::{.column-margin}
+```{python}
+#| echo: false
+import os
+import sys
+print(sys.executable)
+```
+:::

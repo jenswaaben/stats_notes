@@ -1,0 +1,35 @@
+project:
+  type: website
+
+website:
+  title: "Statistics Notes"
+  navbar:
+    left:
+      - text: "Home"
+        file: index.qmd
+      - text: "An introduction to statistics"
+        file: stats_intro.qmd
+      - text: "Distributions"
+        file: distributions.qmd
+      - text: "Bayesian statistics"
+        file: bayes.qmd
+      - text: "Machine learning"
+        file: machine_learning.qmd
+      - text: "Deep learning"
+        file: deep_learning.qmd
+
+
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-location: left
+    page-layout: full
+    grid: 
+      sidebar-width: 
+        275px
+      gutter-width: 
+        0em
+      margin-width: 
+        400px
