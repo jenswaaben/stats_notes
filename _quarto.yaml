@@ -3,6 +3,7 @@ project:
   output-dir: docs
 
 website:
+  site-url: /stats_notes/
   title: "Statistics Notes"
   navbar:
     left:

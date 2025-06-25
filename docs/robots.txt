@@ -1,0 +1,1 @@
+Sitemap: /stats_notes/sitemap.xml
