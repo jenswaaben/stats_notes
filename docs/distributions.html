@@ -67,10 +67,39 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
-<body class="floating nav-fixed">
+<body class="floating nav-fixed slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -126,7 +155,15 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#hvad-siger-du" id="toc-hvad-siger-du" class="nav-link active" data-scroll-target="#hvad-siger-du">hvad siger du</a></li>
+  <li><a href="#distributions" id="toc-distributions" class="nav-link active" data-scroll-target="#distributions">Distributions:</a>
+  <ul class="collapse">
+  <li><a href="#discrete-distribution" id="toc-discrete-distribution" class="nav-link" data-scroll-target="#discrete-distribution">Discrete distribution:</a>
+  <ul class="collapse">
+  <li><a href="#with-finite-support" id="toc-with-finite-support" class="nav-link" data-scroll-target="#with-finite-support">With finite support:</a></li>
+  <li><a href="#with-infinite-support" id="toc-with-infinite-support" class="nav-link" data-scroll-target="#with-infinite-support">With infinite support:</a></li>
+  </ul></li>
+  <li><a href="#continuous-distributions" id="toc-continuous-distributions" class="nav-link" data-scroll-target="#continuous-distributions">Continuous distributions:</a></li>
+  </ul></li>
   </ul>
 </nav>
 </nav>
@@ -135,15 +172,143 @@ ul.task-list li input[type="checkbox"] {
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content">
+<main class="content page-columns page-full column-body" id="quarto-document-content">
 
 
 
 
-<section id="hvad-siger-du" class="level1">
-<h1>hvad siger du</h1>
+<section id="distributions" class="level1 page-columns page-full">
+<h1>Distributions:</h1>
+<p>Distributions are ways to describe how a phenomena behaves. I.e. how does flipping a coin behave? Rolling a die? How does height in a population behave? How does radioactive waste decay? Although phenomena can seems unrelated a lot of them behave similarly. The result of a coinflip follows the same kind distribution as the result of any other binary outcome. A list and representation of some of the most common distributions can be seen underneath. In the github page for this section you can find a bunch of Shiny-apps where you can interactively change parameters of the distributions so download that if you want. Another concept is central to the understanding of distributions. <strong>Support</strong>. Finite support is when a distribution has a finite number of outcomes. Infinite support distributions is when there is an infinite amount of outcomes.</p>
+<section id="discrete-distribution" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="discrete-distribution">Discrete distribution:</h2>
+<p>Discrete distributions are associated with discrete data. Data that falls within distinct categories. The most basic discrete probability distribution is the bernoulli distribution.</p>
+<section id="with-finite-support" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="with-finite-support">With finite support:</h3>
+<section id="the-bernoulli" class="level4 page-columns page-full">
+<h4 class="anchored" data-anchor-id="the-bernoulli">The bernoulli:</h4>
+<div class="cell page-columns page-full">
+
+<div class="no-row-height column-margin column-container"><div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="distributions_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div></div></div>
+<p>The Bernoulli distribution is so simple we often don’t even consider it a distribution. The bernoulli distribution describes two outcomes. I.e. Flipping a coin. This is done one time. It does so with a particular a particular probability. It is probably the distribution that makes the most intuitive sense, without actually making sense as a distriribution. I think this is because distributions are usually considered to describe an array of outputs, not just two values. This can be illustrated by the following app. for the Bernoulli distribution the only parameter that changes is p.&nbsp;The probability density function is:</p>
+<p><br>
+</p>
+<p><span class="math display">\[f(k;p) = Prob(X = k) =  p^k(1-p)^{1-k}  \: \: \: \: for \: k \: in \: \{0,1\}\]</span></p>
+</section>
+<section id="the-binomial" class="level4 page-columns page-full">
+<h4 class="anchored" data-anchor-id="the-binomial">The Binomial:</h4>
+<div class="cell page-columns page-full">
+
+<div class="no-row-height column-margin column-container"><div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="distributions_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div></div></div>
+<p>The binomial distribution is based on the bernoulli distribution. More specifically it describes the probability of getting a specific number of successes out of N independent bernoulli trials. The formula the density function of a binomial distribution is:</p>
+<p><span class="math display">\[f(k, n, p) = Prob(X = k) = \binom{n}{k}  p^k(1-p)^{1-k}\]</span></p>
+<p>Where <em>p</em> is the probability of every trial being a succes. <em>k</em> is the number of successes. <em>n</em> is the number of bernoulli trials. <span class="math inline">\(\binom{n}{k}\)</span> is the binomial coefficient. Basicallye the binomial coefficient calculates how many different ways we can choose k elements from n elements. E.g. <span class="math inline">\(\binom{4}{2} = 6\)</span> because there are six different ways to choose a subset of two from a set of four different values. The Binomial coefficient can be calculated by:</p>
+<p><span class="math display">\[\binom{n}{k} = \frac{n!}{k!(n-k)!}\]</span></p>
+</section>
+<section id="the-hypergeometric-distribution" class="level4">
+<h4 class="anchored" data-anchor-id="the-hypergeometric-distribution">The hypergeometric distribution</h4>
+<p>So the hypergeometric distribution is very much like the binomial distribution. The difference is that there is no replacement in the hypergeometric distribution. This means that every trial has a different probability of success. The probability density function is given by:</p>
+<p><span class="math display">\[Prob(X = k) = \frac{\binom{K}{k} \binom{N-K}{n-k}}{\binom{N}{n}}\]</span></p>
+<p>Where <em>N</em> is the total population. <em>n</em> is the number of trials. <em>K</em> is the total amount of Successes in the initial population. <em>k</em> is a a number of successes</p>
+<p><span class="math inline">\(\binom{K}{k}\)</span> describes how many ways we can select k successes from K total successes. <span class="math inline">\(\binom{N-K}{n-k}\)</span> describes how many ways we the remaining failures can be arranged. <span class="math inline">\(\binom{N}{n}\)</span> Describes in how many different ways we can choose n samples from N total samples.</p>
+<p>In other words: If there are a lot of ways to choose the amount of successes from total successes, and the amount of failures from total failures in n trials, there is a large probability.</p>
+<p>The probability density function is:</p>
+</section>
+<section id="poisson-binomial-distribution" class="level4">
+<h4 class="anchored" data-anchor-id="poisson-binomial-distribution">Poisson Binomial distribution:</h4>
+<p>The Poisson Binomial distribution is somewhat similar to the Beta binomial distribution. But instead of sampling the probability from a distribution, we know the probability of each outcome. In the example below, I have sampled, since it did not seem feasible to put in a lot of them by hand. The probability can be written as a sum:</p>
+<p><span class="math display">\[Pr(K = k) = \sum_{A \in F_k} \prod_{i \in A} p_i \prod_{j \in A^c} (1-p_j)\]</span></p>
+<p><em><span class="math inline">\(F_k\)</span></em> is all the combinations of k integers that can be selected from 1:n.&nbsp;example: <span class="math inline">\(F_2\)</span> , n = 1,2,3 = {{1,2}, {1,3}, {2,3}}. <em>A</em> is the set of a particular set combination, e.g.&nbsp;{1,2} in the above example. <em><span class="math inline">\(A^c\)</span></em> is the complementary of A, e.g.&nbsp;A = {{1,2}}, Ac = {{1,3},{2,3}}.</p>
+<p>Generally speaking this means that the probabilty of a particular k (number of successes) is the sum of the product of probability of combinations.</p>
+</section>
+<section id="beta-binomial-distribution" class="level4">
+<h4 class="anchored" data-anchor-id="beta-binomial-distribution">Beta binomial distribution:</h4>
+<p>The beta binomial distribution is another layer of complexity. Like the Binomial distribution it assumes that trials are independent bernoulli distributed. However, it does not assume that the probability is the same for every trial, but that the probabilty of every trial is sampled from a beta distribution (see section on continuous distributions). That is:</p>
+<p>If p ~ Beta(<span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span>) and X ~ Binomial(<em>n, p</em>), then X ~ BetaBinomial(<em>n, <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span></em>).</p>
+<p>And the pdf can be written as:</p>
+<p><span class="math display">\[f(x | n, \alpha, \beta) = \int_0^1 Bin(x | n, p) \: Beta(p | \alpha, \beta ) \: dp \:=  \binom{N}{x} \frac{B(x + \alpha, n - x - \beta)}{B(\alpha, \beta)}\]</span></p>
+</section>
+<section id="negative-binomial-distribution" class="level4">
+<h4 class="anchored" data-anchor-id="negative-binomial-distribution">Negative binomial distribution:</h4>
+<p>Instead of modelling the probability of successes in a certain amount of pulls, the negative binomial distribution models the how many failures we can expect before we get a certain number of successes. The probability distribution is given by:</p>
+<p><span class="math display">\[X \sim NB(r, p)\]</span></p>
+<p><span class="math display">\[f(k; r, p) = Pr(X = k) = \binom{k + r - 1}{k}(1-p)^kp^r\]</span></p>
+<p>Where <em>k</em> is the number of failures. <em>r</em> is the number of successes. The binomial coefficient describes in how many different ways k failures can be chosen between k failures and r successes (the minus one is because the last pull is always a success).</p>
+</section>
+<section id="negative-hypergeomtric-distribution" class="level4">
+<h4 class="anchored" data-anchor-id="negative-hypergeomtric-distribution">Negative hypergeomtric distribution:</h4>
+<p>Conceptually A bit like the negative Binomial distribution. Instead of finding the probabilities of how many successes are drawn, we find the probabilities of how many balls are drawn before a certain number of successes are drawn. The Probability density function cna be written as:</p>
+<p><span class="math display">\[Pr(X = k) = \frac{\binom{k+r-1}{k} \binom{N-r-k}{K-k}}{\binom{N}{K}}\]</span></p>
+<p>Where <em>N</em> is the population size. <em>K</em> is the total amount of successes. <em>r</em> is the number of failures. <em>k</em> is the number of observed successes.</p>
+</section>
+</section>
+<section id="with-infinite-support" class="level3">
+<h3 class="anchored" data-anchor-id="with-infinite-support">With infinite support:</h3>
+<section id="possion-distribution" class="level4">
+<h4 class="anchored" data-anchor-id="possion-distribution">Possion distribution:</h4>
+<p>The poisson distribution is used a lot in different biological and physical scenarios. It was first developed to describe how likely it is to see a certain amount of events within a certain time frame. E.g. how likely is it to see 1, 2, 3 (etc) in cars outside your window in an hour. The probability density function is:</p>
+<p><span class="math display">\[Pr(X = k) = \frac{\lambda^ke^{-k}}{k!}\]</span></p>
+</section>
+<section id="beta-negative-binomial-distribution" class="level4">
+<h4 class="anchored" data-anchor-id="beta-negative-binomial-distribution">Beta negative binomial distribution</h4>
+<p>The beta negative binomial distribution describes the probability of getting k failures before getting r successes. However, the probability of each success is distributed with a beta distribution. The pdf is given as:</p>
+<p><span class="math display">\[X \sim BNB(r, \alpha, \beta) = \int_0^1f_{X | p }(k|r,q) \cdot f_p(q | \alpha, \beta)dq = \frac{B(r+k, \alpha + \beta)}{B(r, \alpha)} \frac{\Gamma(k + \beta)}{k!\Gamma(\beta)}\]</span></p>
+<p>This involves some math. However, it can be explained in an easier way. F(X|p) describes the conditional probability of drawing k failures before n</p>
+</section>
+<section id="geometric-distribution" class="level4">
+<h4 class="anchored" data-anchor-id="geometric-distribution">geometric distribution</h4>
+<p>The geometric distribution describes how many bernoulli trials it takes to get a single success. The pdf is given by:</p>
+<p><span class="math display">\[Pr(X = k) = (1-p)^{k-1}p\]</span></p>
+</section>
+</section>
+</section>
+<section id="continuous-distributions" class="level2">
+<h2 class="anchored" data-anchor-id="continuous-distributions">Continuous distributions:</h2>
+<section id="normal-distribution" class="level4">
+<h4 class="anchored" data-anchor-id="normal-distribution">Normal distribution</h4>
+</section>
+<section id="beta-distribution" class="level4">
+<h4 class="anchored" data-anchor-id="beta-distribution">Beta distribution</h4>
+</section>
+<section id="logistic-normal-distribution" class="level4">
+<h4 class="anchored" data-anchor-id="logistic-normal-distribution">Logistic normal distribution</h4>
+</section>
+<section id="chi-distribution" class="level4">
+<h4 class="anchored" data-anchor-id="chi-distribution">Chi distribution</h4>
+</section>
+<section id="chi-squared-distribution" class="level4">
+<h4 class="anchored" data-anchor-id="chi-squared-distribution">Chi-squared distribution</h4>
+</section>
+<section id="exponential-distribution" class="level4">
+<h4 class="anchored" data-anchor-id="exponential-distribution">Exponential distribution</h4>
+</section>
+<section id="f-distribution" class="level4">
+<h4 class="anchored" data-anchor-id="f-distribution">F distribution</h4>
+</section>
+<section id="students-t-distribution" class="level4">
+<h4 class="anchored" data-anchor-id="students-t-distribution">Student’s T distribution</h4>
+</section>
+<section id="logistic-distribution" class="level4">
+<h4 class="anchored" data-anchor-id="logistic-distribution">Logistic distribution</h4>
+</section>
+<section id="gamma-distribution" class="level4">
+<h4 class="anchored" data-anchor-id="gamma-distribution">Gamma distribution</h4>
 
 
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->

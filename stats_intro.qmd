@@ -43,4 +43,12 @@ Common for all distributions is that they can be mathematically expressed. This 
 
 #### Statistical modelling: 
 
-Statistical modelling uses some of the concepts described above to model real world phenomena. 
+Statistical modelling uses some of the concepts described above to model real world phenomena. I will get further into how to do statistical modelling in the section of the name above. There are two main schools of thought when it comes to statistical modelling: **frequentist** and **bayesian**. See them under their corresponding tabs. 
+
+#### Machine learning: 
+
+Machine learning uses central statistical concepts to teach a machine patterns in data. I will cover some use-cases and speak to why it is statistics in the first place, but not everything will be covered.  
+
+#### Deep learning: 
+
+A branch of Machine Learning where the computer architecture resemebles neurons in the brain. More of an explanation in the corresponding tab. 
