@@ -4,7 +4,9 @@ This document is meant as a review / for improving my own understanding of stati
 
 ## How to read the page. 
 
-The page is made up 
+The page is made up of a mixture between descriptive text, figures and some interactive elements. Both Python and R code is used. Some of the output is placed in the right margine like so (for R and python respectively): 
+
+### Code
 
 :::{.column-margin}
 ```{r echo=True}
@@ -13,7 +15,6 @@ file.path(R.home("bin"), "R")
 ```
 :::
 
-and now with python: 
 
 :::{.column-margin}
 ```{python}
@@ -23,3 +24,38 @@ import sys
 print(sys.executable)
 ```
 :::
+
+\ 
+
+Some code is embedded in the main-panel not the margin (R and python respectively). 
+
+
+```{r}
+
+1+1 
+
+```
+
+```{python}
+
+1+1 
+
+```
+
+### Figures
+
+and figures are also included either in the main text: 
+
+![](illustrations/figures/example.svg)
+
+Or in the margin: 
+
+:::{.column-margin}
+
+![](illustrations/figures/example.svg)
+
+:::
+
+### Final remarks: 
+
+The sub-topics of statistics can be seen in the navigation bar at the top. For me the logical way to approach it is from left to right, but feel free to do it however you like. 

@@ -23,6 +23,7 @@ website:
 
 format:
   html:
+    code-overflow: scroll
     theme: cosmo
     toc: true
     toc-location: left
@@ -31,6 +32,6 @@ format:
       sidebar-width: 
         275px
       gutter-width: 
-        0em
+        1em
       margin-width: 
         400px

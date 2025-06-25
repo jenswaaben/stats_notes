@@ -70,7 +70,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="floating nav-fixed">
+<body class="floating nav-fixed slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -121,19 +121,70 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
-  
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#a-few-words-on-statistics-in-general." id="toc-a-few-words-on-statistics-in-general." class="nav-link active" data-scroll-target="#a-few-words-on-statistics-in-general.">A few words on statistics in general.</a>
+  <ul class="collapse">
+  <li><a href="#a-brief-history-of-statistics." id="toc-a-brief-history-of-statistics." class="nav-link" data-scroll-target="#a-brief-history-of-statistics.">A brief history of statistics.</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content column-page" id="quarto-document-content">
+<main class="content page-columns page-full column-body" id="quarto-document-content">
 
 
 
 
+<section id="a-few-words-on-statistics-in-general." class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="a-few-words-on-statistics-in-general.">A few words on statistics in general.</h2>
+<p>So what is statistics even? The answer might differ depending on who you ask. I am a biologist - and my understanding of statistics reflects this. I acknowledge that the theory presented in this little presentation is simplified compared to what an <em>actual</em> statistician would have given, but if the goal is to use statistics, this might not be all bad. I will try my best to give a different take on how to understand statistics, than what I have seen in the statistics courses that I have taken. In as brief a way as possible.</p>
+<section id="a-brief-history-of-statistics." class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="a-brief-history-of-statistics.">A brief history of statistics.</h3>
+<p>The name statistics originate (according to Wikipedia) from <strong>state</strong>s measuring different economic patterns. It uses the tools of mathematics to describe “real world” scenarios. Two overall parts of statistics are of particular importance: <strong>probability</strong> and <strong>statistical inference</strong>. The two are closely connected.</p>
+<section id="probability-and-statistical-inference" class="level4 page-columns page-full">
+<h4 class="anchored" data-anchor-id="probability-and-statistical-inference">Probability and statistical inference</h4>
+<p>Probability theory describes the likeliness of an outcome. In more formal terms probability theory wishes to attribute probability to outcomes expressed in a sample space. A sample space is the set of possible outcomes, i.e.&nbsp;heads and tails for flipping a coin. Statistical inference uses mathematical tools to estimate the properties of distribution of probability. A distribution of probability is how probabilites are assigned to outcomes. I can seem counter intuitive at first. Some examples make sense, i.e.&nbsp;the probability of a coin.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="illustrations/figures/simple_probability.svg" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>The probabilty of a fair coin is 0.5 i.e.&nbsp;equal likely outcomes</figcaption>
+</figure>
+</div>
+</div></div><p>Other times it is less clear that we are working with probabilities. A good example is height. On the right the height of 10000 people is illustrated as a histogram. We intuitively know that is more common to be “normal” height. I.e. the probability of this is higher. However, the concept is a little more abstract than in the case of the coin.</p>
+<div class="cell page-columns page-full">
+
+<div class="no-row-height column-margin column-container"><div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="stats_intro_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div></div></div>
+<p>Different natural phenomenons can be described using different statistical distributions. A lot of work has gone into finding different probability distributions.</p>
+</section>
+<section id="distributions" class="level4">
+<h4 class="anchored" data-anchor-id="distributions">Distributions:</h4>
+<p>A lot of work has gone into finding different probability distributions. We need probabilty distributions to attempt to explain the world around us. It has turned out that a lot of things we measure (variables) seem to behave in the same ways - i.e.&nbsp;they follow similar distributions. The distributions are intrinsically linked to the type of data it describes. Data fall into two overall categories: <strong>Discrete</strong> and <strong>Continuous</strong>. An example of discrete data is our coin example above. Something that falls within definite categories. Often times with no numerical relationship with each other - tails does not have a numerical distance to heads. Continuous distributions are numbers such as height that exist on a number line.</p>
+<p>Common for all distributions is that they can be mathematically expressed. This means each one comes with a number of assumptions. As such, this is not a problem. The problem arise, when we as researchers use a particular distribution to describe an outcome where the assumptions are violated. When the assumptions are violated, the underlying statistical inference we draw regarding the underlying natural phenomenon will be wrong. For a review of some of the common distributions see the distributions tab above.</p>
+</section>
+<section id="statistical-modelling" class="level4">
+<h4 class="anchored" data-anchor-id="statistical-modelling">Statistical modelling:</h4>
+<p>Statistical modelling uses some of the concepts described above to model real world phenomena.</p>
 
 
+</section>
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
