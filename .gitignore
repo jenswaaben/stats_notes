@@ -3,7 +3,6 @@ quarto_venv/
 _site/quarto_venv/
 _site/site_libs/
 docs/quarto_venv/
-docs/site_libs/
 
 # quarto files
 
