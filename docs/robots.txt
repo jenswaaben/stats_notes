@@ -1,1 +1,1 @@
-Sitemap: /stats_notes/sitemap.xml
+Sitemap: https://jenswaaben.github.io/stats_notes/sitemap.xml
