@@ -24,7 +24,8 @@ website:
 format:
   html:
     code-overflow: scroll
-    theme: cosmo
+    theme: default
+    scss: styles.scss
     toc: true
     toc-location: left
     page-layout: full
