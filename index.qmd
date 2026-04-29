@@ -2,11 +2,26 @@
 
 This document is meant as a review / for improving my own understanding of statistics. Use it if you can but I take no responsibility for what is right and wrong. It is meant to be very hands on with code. Most often only the output is shown, but if you want to see it it is all available on my github page. 
 
-## How to read the page. 
+## How to Read These Notes
 
-The page is made up of a mixture between descriptive text, figures and some interactive elements. Both Python and R code is used. Some of the output is placed in the right margine like so (for R and python respectively): 
+This collection of statistics notes is organized to help you understanding statistical concepts, from foundational theory to practical applications.
 
-### Code
+### Structure
+
+The notes are organized into four main sections, accessible through the navigation bar at the top:
+
+1. **Introduction** - What is statistics? Probability and statistical inference
+2. **Distributions** - Discrete and continuous probability distributions
+3. **Statistical Inference** - Frequentist and Bayesian statistics, hypothesis testing
+4. **Machine Learning** - Statistical learning methods and deep learning
+
+### Content Types
+
+These notes use a mixture of descriptive text, mathematical formulas, figures, and interactive elements (R code, visualizations, and Shiny apps).
+
+#### Code Examples
+
+Some code is placed in the margin for reference:
 
 :::{.column-margin}
 ```{r echo=True}
@@ -14,7 +29,6 @@ The page is made up of a mixture between descriptive text, figures and some inte
 file.path(R.home("bin"), "R")
 ```
 :::
-
 
 :::{.column-margin}
 ```{python}
@@ -25,37 +39,28 @@ print(sys.executable)
 ```
 :::
 
-\ 
-
-Some code is embedded in the main-panel not the margin (R and python respectively). 
-
+Some code is embedded in the main panel:
 
 ```{r}
-
-1+1 
-
+1+1
 ```
 
 ```{python}
-
-1+1 
-
+1+1
 ```
 
-### Figures
+#### Figures
 
-and figures are also included either in the main text: 
+Figures are included in the main text:
 
 ![](illustrations/figures/example.svg)
 
-Or in the margin: 
+Or in the margin:
 
 :::{.column-margin}
-
 ![](illustrations/figures/example.svg)
-
 :::
 
-### Final remarks: 
+### Suggested Reading Order
 
-The sub-topics of statistics can be seen in the navigation bar at the top. For me the logical way to approach it is from left to right, but feel free to do it however you like. 
+For a comprehensive understanding, I recommend starting with the **Introduction** section and then moving through the sections from left to right. However, feel free to explore topics in any order based on your interests and needs.

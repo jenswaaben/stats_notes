@@ -1,0 +1,63 @@
+# Poisson Distribution
+
+## Overview
+
+The Poisson distribution is used extensively in biological and physical scenarios. It was first developed to describe how likely it is to see a certain number of events within a fixed time frame or space.
+
+## Description
+
+For example: how likely is it to see 1, 2, 3 (etc.) cars outside your window in an hour? Or the number of radioactive decays in a given time period? Or the number of calls to a call center per minute?
+
+The Poisson distribution is particularly useful for modeling **rare events** that occur independently at a constant average rate.
+
+## Probability Density Function
+
+$$Pr(X = k) = \frac{\lambda^k e^{-\lambda}}{k!}$$
+
+Where:
+- $\lambda$ (lambda) = average number of events in the given time/space interval
+- $k$ = number of events (0, 1, 2, ...)
+- $e$ = Euler's number (~2.71828)
+
+## Properties
+
+- Mean = $\lambda$
+- Variance = $\lambda$
+- The distribution is right-skewed for small $\lambda$, becoming more symmetric as $\lambda$ increases
+
+## Visualization
+
+```{r}
+#| echo: false
+library('tidyverse')
+lambda <- 5
+k_vals <- 0:15
+dens <- dpois(k_vals, lambda = lambda)
+tibble(x = k_vals, y = dens) %>
+  ggplot(aes(x = x, y = y)) +
+  geom_col(fill = '#2ecc71') +
+  geom_vline(xintercept = lambda, color = 'red', linetype = 'dashed') +
+  labs(x = 'Number of events (k)', 
+       y = 'Probability',
+       title = paste('Poisson Distribution (λ=', lambda, ')', sep = '')) +
+  theme_minimal(base_size = 16)
+```
+
+## Interactive App
+
+```{r}
+#| echo: false
+#| error: false
+if (requireNamespace('shiny', quietly = TRUE) && file.exists('/home/jenswaaben/phd/courses/stats_personal/statistics/apps/discrete_distributions/poisson_app/app.R')) {
+  shiny::shinyAppFile('/home/jenswaaben/phd/courses/stats_personal/statistics/apps/discrete_distributions/poisson_app/app.R')
+}
+```
+
+## Real-world Examples
+
+- Number of cars passing a point in an hour
+- Number of emails received per day
+- Number of radioactive decays per minute
+- Number of patients arriving at a hospital emergency room
+- Number of typos on a page
+- Number of bacteria in a microscope field of view

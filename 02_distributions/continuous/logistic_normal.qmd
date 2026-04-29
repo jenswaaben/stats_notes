@@ -1,0 +1,39 @@
+# Logistic Normal Distribution
+
+## Overview
+
+The logistic normal distribution, also known as the **logit-normal distribution**, is a continuous probability distribution for a random variable whose logarithm is normally distributed.
+
+## Description
+
+This distribution is the logistic transformation of a normal distribution. If $X \sim N(\mu, \sigma^2)$, then $Y = \text{logit}^{-1}(X)$ follows a logistic normal distribution.
+
+The logistic transformation maps the real line to the interval (0, 1), making this distribution useful for modeling proportions and probabilities.
+
+## Probability Density Function
+
+The PDF can be derived from the normal distribution through the logistic transformation.
+
+If $X \sim N(\mu, \sigma^2)$, then $Y = \frac{1}{1 + e^{-X}}$ has the logistic normal distribution.
+
+## Properties
+
+- Defined on the interval (0, 1)
+- Can be unimodal or bimodal depending on parameters
+- Useful for modeling data bounded between 0 and 1
+
+## Interactive App
+
+```{r}
+#| echo: false
+#| error: false
+if (requireNamespace('shiny', quietly = TRUE) && file.exists('/home/jenswaaben/phd/courses/stats_personal/statistics/apps/continuous_distributions/logistic_normal_app/app.R')) {
+  shiny::shinyAppFile('/home/jenswaaben/phd/courses/stats_personal/statistics/apps/continuous_distributions/logistic_normal_app/app.R')
+}
+```
+
+## Real-world Examples
+
+- Modeling proportions in Bayesian analysis
+- Compositional data (where components sum to 1)
+- Transformations of log-ratio data

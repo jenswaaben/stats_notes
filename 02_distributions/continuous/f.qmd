@@ -1,0 +1,49 @@
+# F Distribution
+
+## Overview
+
+The F distribution, also known as the **Fischer-Snedecor distribution**, is the distribution of the **ratio of two independent chi-squared random variables**, each divided by their respective degrees of freedom.
+
+## Description
+
+If $X_1 \sim \chi^2_{d_1}$ and $X_2 \sim \chi^2_{d_2}$ are independent chi-squared random variables with $d_1$ and $d_2$ degrees of freedom respectively, then:
+
+$$F = \frac{X_1 / d_1}{X_2 / d_2} \sim F(d_1, d_2)$$
+
+The F distribution is primarily used in statistical tests, particularly in **analysis of variance (ANOVA)** and **regression analysis**, to compare variances.
+
+## Probability Density Function
+
+The PDF of the F distribution is complex:
+
+$$f(x | d_1, d_2) = \frac{\Gamma\left(\frac{d_1 + d_2}{2}\right) \left(\frac{d_1}{d_2}\right)^{d_1/2} x^{d_1/2 - 1}}{\Gamma\left(\frac{d_1}{2}\right) \Gamma\left(\frac{d_2}{2}\right) \left(1 + \frac{d_1}{d_2} x\right)^{(d_1 + d_2)/2}} \quad \text{for } x \geq 0$$
+
+Where:
+- $d_1$ = numerator degrees of freedom
+- $d_2$ = denominator degrees of freedom
+- $\Gamma(\cdot)$ = Gamma function
+
+## Properties
+
+- Defined on [0, ∞)
+- Mean = $\frac{d_2}{d_2 - 2}$ (for $d_2 > 2$)
+- Variance = $\frac{2 d_2^2 (d_1 + d_2 - 2)}{d_1 (d_2 - 4) (d_2 - 2)^2}$ (for $d_2 > 4$)
+- Mode = $\frac{d_1 - 2}{d_1} \cdot \frac{d_2}{d_2 + 2}$ (for $d_1 \geq 2$)
+
+## Interactive App
+
+```{r}
+#| echo: false
+#| error: false
+if (requireNamespace('shiny', quietly = TRUE) && file.exists('/home/jenswaaben/phd/courses/stats_personal/statistics/apps/continuous_distributions/F_app/app.R')) {
+  shiny::shinyAppFile('/home/jenswaaben/phd/courses/stats_personal/statistics/apps/continuous_distributions/F_app/app.R')
+}
+```
+
+## Real-world Examples
+
+- Analysis of Variance (ANOVA) - comparing means across multiple groups
+- F-test for equality of variances
+- Comparing nested linear models (nested model comparison)
+- Regression analysis - testing overall significance of regression
+- Multivariate analysis

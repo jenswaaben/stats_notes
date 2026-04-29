@@ -1,0 +1,51 @@
+# Bernoulli Distribution
+
+## Overview
+
+The Bernoulli distribution is the most basic probability distribution, describing a single binary outcome. It is so simple that we often don't even consider it a distribution, yet technically it is.
+
+## Description
+
+The Bernoulli distribution describes two outcomes (e.g., flipping a coin). This is done one time, with a particular probability. It makes the most intuitive sense because distributions are usually considered to describe an array of outputs, not just two values.
+
+For the Bernoulli distribution, the only parameter that changes is **p** (the probability of success).
+
+## Probability Density Function
+
+$$f(k;p) = Prob(X = k) =  p^k(1-p)^{1-k}  \  \  \  for \  k \  in \  \{0,1\}$$
+
+Where:
+- $p$ = probability of success (1) / probability of failure (0)
+- $k$ = outcome (0 or 1)
+
+## Visualization
+
+```{r}
+#| echo: false
+library('tidyverse')
+tibble(dens = dbinom(c(0,1), 1, 0.5), x = c('Failure', "Success")) %>
+      ggplot(mapping = aes(x = x, y = dens, fill = x)) +
+        geom_col() +
+        ylim(0,1) +
+        theme_minimal(base_size = 20) + 
+        labs(y = 'Probability')
+```
+
+## Interactive App
+
+The Shiny app allows you to explore how changing the probability parameter affects the distribution.
+
+```{r}
+#| echo: false
+#| error: false
+if (requireNamespace('shiny', quietly = TRUE) && file.exists('/home/jenswaaben/phd/courses/stats_personal/statistics/apps/discrete_distributions/bernoulli_app/app.R')) {
+  shiny::shinyAppFile('/home/jenswaaben/phd/courses/stats_personal/statistics/apps/discrete_distributions/bernoulli_app/app.R')
+}
+```
+
+## Real-world Examples
+
+- Coin flip (heads/tails)
+- Success/failure of a single trial
+- Yes/No questions
+- Pass/Fail tests

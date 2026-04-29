@@ -1,0 +1,7 @@
+# Introduction
+
+This section introduces the fundamental concepts of statistics.
+
+## Pages
+
+- [What is Statistics?](statistics.qmd) - A general introduction to statistics from a biologist's perspective

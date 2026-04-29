@@ -1,0 +1,43 @@
+# Probability Distributions
+
+Distributions are mathematical descriptions of how phenomena behave. This section covers the most common probability distributions, organized by type.
+
+## Discrete Distributions
+
+Discrete distributions describe data that falls within distinct categories (typically integer values).
+
+:::{.callout-note}
+**Finite support** distributions have a finite number of possible outcomes.
+**Infinite support** distributions have an infinite (countable) number of possible outcomes.
+:::
+
+### With Finite Support
+
+- [Bernoulli](discrete/bernoulli.qmd) - The most basic distribution for binary outcomes
+- [Binomial](discrete/binomial.qmd) - Number of successes in N independent Bernoulli trials
+- [Hypergeometric](discrete/hypergeometric.qmd) - Like binomial but without replacement
+- [Beta-Binomial](discrete/beta_binomial.qmd) - Binomial with probability sampled from a Beta distribution
+- [Poisson Binomial](discrete/poisson_binomial.qmd) - Binomial with different probabilities for each trial
+- [Negative Binomial](discrete/negative_binomial.qmd) - Number of failures before r successes
+- [Negative Hypergeometric](discrete/negative_hypergeometric.qmd) - Number drawn before k successes without replacement
+
+### With Infinite Support
+
+- [Poisson](discrete/poisson.qmd) - Events in a fixed time/space interval
+- [Geometric](discrete/geometric.qmd) - Number of trials until first success
+- [Beta Negative Binomial](discrete/beta_negative_binomial.qmd) - Negative binomial with Beta-distributed probability
+
+## Continuous Distributions
+
+Continuous distributions describe data that exists on a number line.
+
+- [Normal](continuous/normal.qmd) - The bell curve, central to statistics
+- [Beta](continuous/beta.qmd) - Distribution on [0,1] interval
+- [Logistic Normal](continuous/logistic_normal.qmd) - Logit-transformed normal distribution
+- [Chi](continuous/chi.qmd) - Distribution of square root of chi-squared
+- [Chi-Squared](continuous/chi_squared.qmd) - Sum of squared standard normals
+- [Exponential](continuous/exponential.qmd) - Time between events in Poisson process
+- [F](continuous/f.qmd) - Ratio of chi-squared distributions
+- [Student's T](continuous/student_t.qmd) - Estimating normal mean with unknown variance
+- [Logistic](continuous/logistic.qmd) - Used in logistic regression
+- [Gamma](continuous/gamma.qmd) - Generalization of exponential distribution

@@ -1,0 +1,69 @@
+# Normal Distribution
+
+## Overview
+
+The normal distribution, also known as the **Gaussian distribution** or **bell curve**, is perhaps the most important and well-known probability distribution in statistics.
+
+## Description
+
+It is symmetric around its mean, with values closer to the mean being more likely than values farther away. The shape of the distribution is determined by its mean ($\mu$) and standard deviation ($\sigma$).
+
+Many natural phenomena follow (approximately) a normal distribution due to the Central Limit Theorem, which states that the sum of many independent random variables tends to be normally distributed, regardless of their underlying distributions.
+
+## Probability Density Function
+
+$$f(x | \mu, \sigma^2) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(x - \mu)^2}{2\sigma^2}\right)$$
+
+Where:
+- $\mu$ = mean
+- $\sigma^2$ = variance
+- $\sigma$ = standard deviation
+
+## Properties
+
+- Mean = $\mu$
+- Median = $\mu$
+- Mode = $\mu$
+- Variance = $\sigma^2$
+- Symmetric about the mean
+- Approximately 68% of data within $\mu \pm \sigma$
+- Approximately 95% of data within $\mu \pm 2\sigma$
+- Approximately 99.7% of data within $\mu \pm 3\sigma$
+
+## Visualization
+
+```{r}
+#| echo: false
+library('tidyverse')
+mean_val <- 0
+sd_val <- 1
+x <- seq(mean_val - 4*sd_val, mean_val + 4*sd_val, length.out = 500)
+y <- dnorm(x, mean = mean_val, sd = sd_val)
+tibble(x = x, y = y) %>
+  ggplot(aes(x = x, y = y)) +
+  geom_line(color = '#3498db', size = 1.5) +
+  geom_vline(xintercept = mean_val, color = 'red', linetype = 'dashed') +
+  geom_hline(yintercept = 0, color = 'black') +
+  labs(x = 'x', y = 'Density',
+       title = paste('Normal Distribution (μ=', mean_val, ', σ=', sd_val, ')', sep = '')) +
+  theme_minimal(base_size = 16)
+```
+
+## Interactive App
+
+```{r}
+#| echo: false
+#| error: false
+if (requireNamespace('shiny', quietly = TRUE) && file.exists('/home/jenswaaben/phd/courses/stats_personal/statistics/apps/continuous_distributions/normal_app/app.R')) {
+  shiny::shinyAppFile('/home/jenswaaben/phd/courses/stats_personal/statistics/apps/continuous_distributions/normal_app/app.R')
+}
+```
+
+## Real-world Examples
+
+- Human height
+- Blood pressure
+- IQ scores
+- Measurement errors
+- Many biological measurements
+- Financial returns (often approximately normal)

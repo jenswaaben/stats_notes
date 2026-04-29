@@ -1,0 +1,72 @@
+# Exponential Distribution
+
+## Overview
+
+The exponential distribution describes the **time between events** in a Poisson process, where events occur continuously and independently at a constant average rate.
+
+## Description
+
+This is the continuous analogue of the geometric distribution. While the geometric distribution models the number of discrete trials until the first success, the exponential distribution models the continuous time until the first event.
+
+A key property of the exponential distribution is that it is **memoryless**: the probability of an event occurring in the next time interval does not depend on how much time has already passed.
+
+## Probability Density Function
+
+$$f(x | \lambda) = \lambda e^{-\lambda x} \quad \text{for } x \geq 0$$
+
+Where:
+- $\lambda$ (lambda) = rate parameter (events per unit time)
+- The mean time between events is $1/\lambda$
+
+## Cumulative Distribution Function
+
+$$F(x | \lambda) = 1 - e^{-\lambda x} \quad \text{for } x \geq 0$$
+
+## Properties
+
+- Defined on [0, ∞)
+- Mean = $1/\lambda$
+- Variance = $1/\lambda^2$
+- Median = $\ln(2)/\lambda$ ≈ $0.693/\lambda$
+- Mode = 0
+- Memoryless: $P(X > s + t | X > s) = P(X > t)$ for all $s, t \geq 0$
+
+## Visualization
+
+```{r}
+#| echo: false
+library('tidyverse')
+lambda_vals <- c(0.5, 1, 2)
+x <- seq(0, 10, length.out = 500)
+
+# Calculate densities for each lambda
+results <- map_dfr(lambda_vals, ~ {
+  tibble(x = x, y = dexp(x, rate = .x), lambda = .x)
+})
+
+results %>
+  ggplot(aes(x = x, y = y, color = factor(lambda))) +
+  geom_line(size = 1) +
+  labs(x = 'x', y = 'Density', title = 'Exponential Distribution for various λ') +
+  theme_minimal(base_size = 14)
+```
+
+## Interactive App
+
+```{r}
+#| echo: false
+#| error: false
+if (requireNamespace('shiny', quietly = TRUE) && file.exists('/home/jenswaaben/phd/courses/stats_personal/statistics/apps/continuous_distributions/exponential_app/app.R')) {
+  shiny::shinyAppFile('/home/jenswaaben/phd/courses/stats_personal/statistics/apps/continuous_distributions/exponential_app/app.R')
+}
+```
+
+## Real-world Examples
+
+- Time until the next phone call arrives at a call center
+- Time until the next customer enters a store
+- Time until a machine component fails
+- Time until the next earthquake in a region
+- Time until the next radioactive decay
+- Lifespan of electronic components
+- Time between car accidents at an intersection

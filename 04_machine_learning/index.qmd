@@ -1,0 +1,6 @@
+# Machine Learning
+
+Statistical methods applied to teach machines to recognize patterns.
+
+- [Machine Learning](machine_learning.qmd) - Overview of ML concepts
+- [Deep Learning](deep_learning.qmd) - Neural network-based approaches

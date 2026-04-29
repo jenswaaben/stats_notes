@@ -1,0 +1,23 @@
+# Discrete Distributions
+
+Discrete distributions describe phenomena with distinct, separate outcomes (typically integer values).
+
+## Finite Support
+
+These distributions have a finite number of possible outcomes.
+
+- [Bernoulli](bernoulli.qmd)
+- [Binomial](binomial.qmd)
+- [Hypergeometric](hypergeometric.qmd)
+- [Beta-Binomial](beta_binomial.qmd)
+- [Poisson Binomial](poisson_binomial.qmd)
+- [Negative Binomial](negative_binomial.qmd)
+- [Negative Hypergeometric](negative_hypergeometric.qmd)
+
+## Infinite Support
+
+These distributions have an infinite (but countable) number of possible outcomes.
+
+- [Poisson](poisson.qmd)
+- [Geometric](geometric.qmd)
+- [Beta Negative Binomial](beta_negative_binomial.qmd)

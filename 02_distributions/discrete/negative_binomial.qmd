@@ -1,0 +1,57 @@
+# Negative Binomial Distribution
+
+## Overview
+
+Instead of modelling the probability of successes in a certain amount of pulls (like the binomial distribution), the negative binomial distribution models **how many failures we can expect before we get a certain number of successes**.
+
+## Description
+
+This is a discrete probability distribution for the number of failures in a sequence of independent and identically distributed Bernoulli trials before a specified number of successes (denoted $r$) occurs.
+
+## Probability Density Function
+
+$$X \sim NB(r, p)$$
+
+$$f(k; r, p) = Pr(X = k) = \binom{k + r - 1}{k}(1-p)^k p^r$$
+
+Where:
+- $k$ = number of failures
+- $r$ = number of successes (target count)
+- $p$ = probability of success on an individual trial
+- The binomial coefficient $\binom{k + r - 1}{k}$ describes in how many different ways k failures can be chosen between k failures and r successes (the minus one is because the last pull is always a success)
+
+## Visualization
+
+```{r}
+#| echo: false
+library('tidyverse')
+# Example visualization of negative binomial
+r <- 5
+p <- 0.3
+k_vals <- 0:20
+dens <- dnbinom(k_vals, size = r, prob = p)
+tibble(x = k_vals, y = dens) %>
+  ggplot(aes(x = x, y = y)) +
+  geom_col(fill = '#e74c3c') +
+  labs(x = 'Number of failures before 5 successes', 
+       y = 'Probability',
+       title = paste('Negative Binomial (r=', r, ', p=', p, ')', sep = '')) +
+  theme_minimal(base_size = 16)
+```
+
+## Interactive App
+
+```{r}
+#| echo: false
+#| error: false
+if (requireNamespace('shiny', quietly = TRUE) && file.exists('/home/jenswaaben/phd/courses/stats_personal/statistics/apps/discrete_distributions/negative_binomial_app/app.R')) {
+  shiny::shinyAppFile('/home/jenswaaben/phd/courses/stats_personal/statistics/apps/discrete_distributions/negative_binomial_app/app.R')
+}
+```
+
+## Real-world Examples
+
+- Number of patients a doctor needs to see before finding 5 with a rare disease
+- Number of sales calls needed before closing 10 deals
+- Number of games a team needs to play before achieving 3 wins
+- Number of manufacturing batches before producing 20 defect-free items

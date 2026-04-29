@@ -1,0 +1,7 @@
+# Statistical Inference
+
+Methods for drawing conclusions from data. Two main philosophies exist.
+
+- [A Statistic](a_statistic.qmd) - Understanding what a statistic is
+- [Frequentist Statistics](frequentist.qmd) - Probability as long-run frequency
+- [Bayesian Statistics](bayesian.qmd) - Probability as degree of belief

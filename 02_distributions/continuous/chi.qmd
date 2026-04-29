@@ -1,0 +1,42 @@
+# Chi Distribution
+
+## Overview
+
+The chi distribution is the distribution of the **square root of a chi-squared random variable**.
+
+## Description
+
+If $X \sim \chi^2_k$ (chi-squared with k degrees of freedom), then $\sqrt{X} \sim \chi_k$ (chi with k degrees of freedom).
+
+This distribution is related to, but distinct from, the chi-squared distribution. While the chi-squared distribution arises from the sum of squared standard normal variables, the chi distribution arises from the square root of such a sum.
+
+## Probability Density Function
+
+$$f(x | k) = \frac{2^{1 - k/2} x^{k - 1} e^{-x^2 / 2}}{\Gamma(k/2)} \quad \text{for } x \geq 0$$
+
+Where:
+- $k$ = degrees of freedom
+- $\Gamma(\cdot)$ = Gamma function
+
+## Properties
+
+- Defined on [0, ∞)
+- Mean = $\sqrt{2} \frac{\Gamma((k+1)/2)}{\Gamma(k/2)}$
+- Variance = $k - 2\left(\frac{\Gamma((k+1)/2)}{\Gamma(k/2)}\right)^2$
+- Mode = $\sqrt{k - 1}$ (for k ≥ 1)
+
+## Interactive App
+
+```{r}
+#| echo: false
+#| error: false
+if (requireNamespace('shiny', quietly = TRUE) && file.exists('/home/jenswaaben/phd/courses/stats_personal/statistics/apps/continuous_distributions/chi_app/app.R')) {
+  shiny::shinyAppFile('/home/jenswaaben/phd/courses/stats_personal/statistics/apps/continuous_distributions/chi_app/app.R')
+}
+```
+
+## Real-world Examples
+
+- Rayleigh distribution (special case with k = 2 degrees of freedom)
+- Distances in multi-dimensional spaces
+- Error analysis in measurement systems

@@ -1,0 +1,40 @@
+# Beta Binomial Distribution
+
+## Overview
+
+The beta binomial distribution adds another layer of complexity to the binomial distribution. Like the binomial distribution, it assumes that trials are independent Bernoulli distributed. However, it does not assume that the probability is the same for every trial.
+
+## Description
+
+Instead, the beta binomial distribution assumes that the probability of each trial is sampled from a beta distribution (see section on continuous distributions). This creates a compound distribution that accounts for variability in the success probability across trials.
+
+The relationship can be expressed as:
+
+If $p \sim Beta(\alpha, \beta)$ and $X \sim Binomial(n, p)$, then $X \sim BetaBinomial(n, \alpha, \beta)$.
+
+## Probability Density Function
+
+$$f(x | n, \alpha, \beta) = \int_0^1 Bin(x | n, p) \cdot Beta(p | \alpha, \beta ) \cdot dp =  \binom{n}{x} \frac{B(x + \alpha, n - x + \beta)}{B(\alpha, \beta)}$$
+
+Where $B(\cdot)$ is the beta function.
+
+## Interpretation
+
+This distribution is useful when you have binomial data but suspect that the probability of success varies across trials or groups. The beta distribution acts as a prior on the success probability, and the beta binomial marginalizes over this uncertainty.
+
+## Interactive App
+
+```{r}
+#| echo: false
+#| error: false
+if (requireNamespace('shiny', quietly = TRUE) && file.exists('/home/jenswaaben/phd/courses/stats_personal/statistics/apps/discrete_distributions/beta-binomial_app/app.R')) {
+  shiny::shinyAppFile('/home/jenswaaben/phd/courses/stats_personal/statistics/apps/discrete_distributions/beta-binomial_app/app.R')
+}
+```
+
+## Real-world Examples
+
+- Ecoology: counting species with variable detection probabilities
+- Medicine: number of successes in clinical trials across different sites
+- Sports: number of wins with variable team performance
+- Quality control: number of defects with variable production quality

@@ -1,0 +1,39 @@
+# Negative Hypergeometric Distribution
+
+## Overview
+
+Conceptually similar to the negative binomial distribution, but for sampling **without replacement**.
+
+## Description
+
+Instead of finding the probabilities of how many successes are drawn (like hypergeometric), we find the probabilities of **how many items are drawn before a certain number of successes are drawn**, without replacement.
+
+## Probability Density Function
+
+$$Pr(X = k) = \frac{\binom{k+r-1}{k} \binom{N-r-k}{K-k}}{\binom{N}{K}}$$
+
+Where:
+- $N$ = population size
+- $K$ = total amount of successes in the population
+- $r$ = number of successes we want to achieve (target)
+- $k$ = number of failures observed before achieving r successes
+
+## Interpretation
+
+This distribution models the number of failures that occur before a specified number of successes is achieved in sampling without replacement from a finite population.
+
+## Interactive App
+
+```{r}
+#| echo: false
+#| error: false
+if (requireNamespace('shiny', quietly = TRUE) && file.exists('/home/jenswaaben/phd/courses/stats_personal/statistics/apps/discrete_distributions/negative_hypergeometric_app/app.R')) {
+  shiny::shinyAppFile('/home/jenswaaben/phd/courses/stats_personal/statistics/apps/discrete_distributions/negative_hypergeometric_app/app.R')
+}
+```
+
+## Real-world Examples
+
+- Number of non-defective items drawn before finding 5 defective ones in quality control
+- Number of non-target species caught before finding 10 target species in fisheries
+- Number of losing lottery tickets before winning 3 times

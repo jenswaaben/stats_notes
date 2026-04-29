@@ -1,0 +1,60 @@
+# Geometric Distribution
+
+## Overview
+
+The geometric distribution describes **how many Bernoulli trials it takes to get a single success**.
+
+## Description
+
+This is the discrete probability distribution of the number of trials needed to get one success, supported on the set {1, 2, 3, ...}. It is a special case of the negative binomial distribution where r = 1.
+
+Note: There are two different parameterizations. This page uses the one that counts the number of trials (including the successful one). Another counts the number of failures before the first success.
+
+## Probability Density Function
+
+$$Pr(X = k) = (1-p)^{k-1} p$$
+
+Where:
+- $p$ = probability of success on an individual trial
+- $k$ = number of trials until the first success (1, 2, 3, ...)
+
+## Properties
+
+- Mean = $1/p$
+- Variance = $(1-p)/p^2$
+- The geometric distribution is **memoryless**: the probability of success on the next trial is independent of how many failures have already occurred
+
+## Visualization
+
+```{r}
+#| echo: false
+library('tidyverse')
+p <- 0.2
+k_vals <- 1:20
+dens <- dgeom(k_vals - 1, prob = p)  # Using R's parameterization (number of failures)
+tibble(x = k_vals, y = dens) %>
+  ggplot(aes(x = x, y = y)) +
+  geom_col(fill = '#8e44ad') +
+  labs(x = 'Number of trials until first success', 
+       y = 'Probability',
+       title = paste('Geometric Distribution (p=', p, ')', sep = '')) +
+  theme_minimal(base_size = 16)
+```
+
+## Interactive App
+
+```{r}
+#| echo: false
+#| error: false
+if (requireNamespace('shiny', quietly = TRUE) && file.exists('/home/jenswaaben/phd/courses/stats_personal/statistics/apps/discrete_distributions/geometric_app/app.R')) {
+  shiny::shinyAppFile('/home/jenswaaben/phd/courses/stats_personal/statistics/apps/discrete_distributions/geometric_app/app.R')
+}
+```
+
+## Real-world Examples
+
+- Number of coin flips until the first head
+- Number of dice rolls until the first six
+- Number of job applications until the first interview offer
+- Number of dates until finding a compatible partner
+- Number of attempts until successfully solving a problem

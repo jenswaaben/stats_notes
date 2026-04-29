@@ -1,0 +1,89 @@
+# Gamma Distribution
+
+## Overview
+
+The gamma distribution is a **continuous probability distribution** that generalizes the exponential distribution and arises naturally in processes with waiting times for multiple events.
+
+## Description
+
+The gamma distribution is often used to model the time until a specified number of events occur in a Poisson process. While the exponential distribution models the time until the first event, the gamma distribution models the time until the k-th event.
+
+Formally, if $X_1, X_2, ..., X_k$ are independent and identically distributed exponential random variables with rate parameter $\lambda$, then their sum follows a gamma distribution:
+
+$$Y = X_1 + X_2 + \cdots + X_k \sim \text{Gamma}(k, \lambda)$$
+
+## Probability Density Function
+
+There are two common parameterizations of the gamma distribution:
+
+### Shape-Rate Parameterization
+
+$$f(x | k, \theta) = \frac{\theta^k x^{k - 1} e^{-\theta x}}{\Gamma(k)} \quad \text{for } x > 0$$
+
+### Shape-Scale Parameterization (used by R)
+
+$$f(x | \alpha, \beta) = \frac{x^{\alpha - 1} e^{-x / \beta}}{\beta^\alpha \Gamma(\alpha)} \quad \text{for } x > 0$$
+
+Where:
+- $\alpha$ (alpha) or $k$ = shape parameter (> 0)
+- $\beta$ (beta) or $\theta$ = scale parameter (or its inverse, the rate parameter) (> 0)
+- $\Gamma(\alpha)$ = Gamma function, which generalizes the factorial
+
+Note: In R, `dgamma(x, shape, scale)` uses the shape-scale parameterization where `rate = 1/scale`.
+
+## Properties
+
+- Defined on (0, ∞)
+- Mean = $\alpha \beta$ (shape-scale) or $k / \theta$ (shape-rate)
+- Median ≈ $\alpha \beta (1 - 1/(9\alpha))^3$ for large $\alpha$
+- Mode = $(\alpha - 1) \beta$ for $\alpha \geq 1$ (shape-scale)
+- Variance = $\alpha \beta^2$ (shape-scale) or $k / \theta^2$ (shape-rate)
+
+## Special Cases
+
+- Exponential distribution: $\alpha = 1$ (shape parameter = 1)
+- Chi-squared distribution: $\beta = 2$, $\alpha = k/2$ where k is degrees of freedom
+- Erlang distribution: $\alpha$ is a positive integer
+
+## Visualization
+
+```{r}
+#| echo: false
+library('tidyverse')
+shape_vals <- c(1, 2, 5)
+scale <- 2
+x <- seq(0, 20, length.out = 500)
+
+# Calculate densities for each shape
+results <- map_dfr(shape_vals, ~ {
+  tibble(x = x, y = dgamma(x, shape = .x, scale = scale), shape = .x)
+})
+
+results %>
+  ggplot(aes(x = x, y = y, color = factor(shape))) +
+  geom_line(size = 1) +
+  labs(x = 'x', y = 'Density', 
+       title = paste('Gamma Distribution (scale =', scale, ')', sep = '')) +
+  theme_minimal(base_size = 14)
+```
+
+## Interactive App
+
+```{r}
+#| echo: false
+#| error: false
+if (requireNamespace('shiny', quietly = TRUE) && file.exists('/home/jenswaaben/phd/courses/stats_personal/statistics/apps/continuous_distributions/gamma_app/app.R')) {
+  shiny::shinyAppFile('/home/jenswaaben/phd/courses/stats_personal/statistics/apps/continuous_distributions/gamma_app/app.R')
+}
+```
+
+## Real-world Examples
+
+- Time until the k-th customer arrives at a store
+- Time until the k-th machine component fails
+- Time until the k-th earthquake in a region
+- Rainfall accumulation over time
+- Service times in queuing systems
+- Survival analysis
+- Financial modeling (time until default)
+- Reliability engineering

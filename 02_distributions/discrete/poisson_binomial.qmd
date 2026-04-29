@@ -1,0 +1,39 @@
+# Poisson Binomial Distribution
+
+## Overview
+
+The Poisson Binomial distribution is somewhat similar to the Beta Binomial distribution. Instead of sampling the probability from a distribution, we know the probability of each outcome.
+
+## Description
+
+This distribution generalizes the binomial distribution by allowing each Bernoulli trial to have a different probability of success. In the standard binomial distribution, all trials have the same probability $p$, but in the Poisson Binomial, each trial $i$ has its own probability $p_i$.
+
+## Probability Density Function
+
+$$Pr(K = k) = \sum_{A \in F_k} \prod_{i \in A} p_i \prod_{j \in A^c} (1-p_j)$$
+
+Where:
+- $F_k$ = all combinations of k integers that can be selected from 1:n
+- Example: $F_2$ with n = 1,2,3 = {{1,2}, {1,3}, {2,3}}
+- $A$ = the set of a particular combination, e.g., {1,2} in the above example
+- $A^c$ = the complementary set of A, e.g., if A = {{1,2}}, then A^c = {{1,3},{2,3}}
+
+## Interpretation
+
+Generally speaking, this means that the probability of a particular k (number of successes) is the sum of the product of probabilities of all possible combinations that result in k successes.
+
+## Interactive App
+
+```{r}
+#| echo: false
+#| error: false
+if (requireNamespace('shiny', quietly = TRUE) && file.exists('/home/jenswaaben/phd/courses/stats_personal/statistics/apps/discrete_distributions/poisson_binomial_app/app.R')) {
+  shiny::shinyAppFile('/home/jenswaaben/phd/courses/stats_personal/statistics/apps/discrete_distributions/poisson_binomial_app/app.R')
+}
+```
+
+## Real-world Examples
+
+- Sports: probability of winning k games when each game has a different probability
+- Finance: probability of k investments being profitable with different success probabilities
+- Medicine: probability of k patients responding to treatment with different response rates

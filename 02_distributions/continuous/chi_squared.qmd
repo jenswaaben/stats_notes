@@ -1,0 +1,67 @@
+# Chi-Squared Distribution
+
+## Overview
+
+The chi-squared distribution (also written as χ² distribution) is one of the most fundamental distributions in statistical inference.
+
+## Description
+
+If $Z_1, Z_2, ..., Z_k$ are independent standard normal random variables (mean = 0, variance = 1), then the sum of their squares follows a chi-squared distribution with k degrees of freedom:
+
+$$Q = Z_1^2 + Z_2^2 + \cdots + Z_k^2 \sim \chi^2_k$$
+
+The chi-squared distribution is widely used in hypothesis testing, particularly in chi-squared tests for goodness-of-fit and independence.
+
+## Probability Density Function
+
+$$f(x | k) = \frac{x^{k/2 - 1} e^{-x/2}}{2^{k/2} \Gamma(k/2)} \quad \text{for } x \geq 0$$
+
+Where:
+- $k$ = degrees of freedom (positive integer)
+- $\Gamma(\cdot)$ = Gamma function
+
+## Properties
+
+- Defined on [0, ∞)
+- Mean = $k$
+- Variance = $2k$
+- Mode = $k - 2$ (for k ≥ 2)
+- Median ≈ $k - 2/3$ for large k
+
+## Visualization
+
+```{r}
+#| echo: false
+library('tidyverse')
+df_vals <- c(1, 2, 5, 10)
+x <- seq(0, 30, length.out = 500)
+
+# Calculate densities for each df
+results <- map_dfr(df_vals, ~ {
+  tibble(x = x, y = dchisq(x, df = .x), df = .x)
+})
+
+results %>
+  ggplot(aes(x = x, y = y, color = factor(df))) +
+  geom_line(size = 1) +
+  labs(x = 'x', y = 'Density', title = 'Chi-Squared Distribution for various degrees of freedom') +
+  theme_minimal(base_size = 14)
+```
+
+## Interactive App
+
+```{r}
+#| echo: false
+#| error: false
+if (requireNamespace('shiny', quietly = TRUE) && file.exists('/home/jenswaaben/phd/courses/stats_personal/statistics/apps/continuous_distributions/chi_squared_app/app.R')) {
+  shiny::shinyAppFile('/home/jenswaaben/phd/courses/stats_personal/statistics/apps/continuous_distributions/chi_squared_app/app.R')
+}
+```
+
+## Real-world Examples
+
+- Chi-squared goodness-of-fit test
+- Chi-squared test of independence
+- Confidence intervals for variance
+- Likelihood ratio tests
+- Analysis of variance (ANOVA)

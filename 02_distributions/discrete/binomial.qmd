@@ -1,0 +1,56 @@
+# Binomial Distribution
+
+## Overview
+
+The binomial distribution is based on the Bernoulli distribution. It describes the probability of getting a specific number of successes out of N independent Bernoulli trials.
+
+## Description
+
+More specifically, the binomial distribution describes the probability of getting exactly $k$ successes in $n$ independent trials, where each trial has probability $p$ of success.
+
+## Probability Density Function
+
+$$f(k, n, p) = Prob(X = k) = \binom{n}{k}  p^k(1-p)^{n-k}$$
+
+Where:
+- $p$ = probability of each trial being a success
+- $k$ = number of successes
+- $n$ = number of Bernoulli trials
+- $\binom{n}{k}$ = binomial coefficient (number of ways to choose k elements from n)
+
+The binomial coefficient can be calculated by:
+
+$$\binom{n}{k} = \frac{n!}{k!(n-k)!}$$
+
+For example: $\binom{4}{2} = 6$ because there are six different ways to choose a subset of two from a set of four different values.
+
+## Visualization
+
+```{r}
+#| echo: false
+library('tidyverse')
+tibble(dens = dbinom(c(0:10), 10, 0.25), x = c(0:10)) %>
+      ggplot(mapping = aes(x = x, y = dens)) +
+      geom_col(fill = '#528ce1') +
+      theme_minimal(base_size = 20) + 
+      labs(x = 'Number of successes out of 10 with probability 0.25', 
+        y = 'Probability') + 
+      scale_x_continuous(breaks = 0:10)
+```
+
+## Interactive App
+
+```{r}
+#| echo: false
+#| error: false
+if (requireNamespace('shiny', quietly = TRUE) && file.exists('/home/jenswaaben/phd/courses/stats_personal/statistics/apps/discrete_distributions/binomial_app/app.R')) {
+  shiny::shinyAppFile('/home/jenswaaben/phd/courses/stats_personal/statistics/apps/discrete_distributions/binomial_app/app.R')
+}
+```
+
+## Real-world Examples
+
+- Number of heads in 10 coin flips
+- Number of defective items in a batch
+- Number of correct answers on a multiple-choice test
+- Number of successes in clinical trials

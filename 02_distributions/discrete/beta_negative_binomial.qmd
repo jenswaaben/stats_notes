@@ -1,0 +1,46 @@
+# Beta Negative Binomial Distribution
+
+## Overview
+
+The beta negative binomial distribution describes the probability of getting **k failures before getting r successes**, where the probability of each success is distributed with a beta distribution.
+
+## Description
+
+This is a compound distribution that adds another layer of complexity to the negative binomial distribution. Instead of assuming a fixed probability of success, the probability itself is modeled as a random variable drawn from a Beta distribution.
+
+This creates a hierarchical model that accounts for extra-variability (over-dispersion) in the data.
+
+## Probability Density Function
+
+$$X \sim BNB(r, \alpha, \beta) = \int_0^1 f_{X | p }(k|r,q) \cdot f_p(q | \alpha, \beta) dq = \frac{B(r+k, \alpha + \beta)}{B(r, \alpha)} \frac{\Gamma(k + \beta)}{k!\Gamma(\beta)}$$
+
+Where:
+- $r$ = number of target successes
+- $k$ = number of failures before achieving r successes
+- $\alpha$, $\beta$ = parameters of the Beta distribution
+- $B(\cdot)$ = Beta function
+- $\Gamma(\cdot)$ = Gamma function
+
+## Interpretation
+
+This formula looks complex, but it can be explained more simply:
+
+- $f_{X|p}(k|r,q)$ describes the conditional probability of drawing k failures before r successes, given probability q
+- This is then integrated over all possible values of q, weighted by the Beta distribution
+- The result accounts for uncertainty in the success probability
+
+## Interactive App
+
+```{r}
+#| echo: false
+#| error: false
+if (requireNamespace('shiny', quietly = TRUE) && file.exists('/home/jenswaaben/phd/courses/stats_personal/statistics/apps/discrete_distributions/beta_negative_binomial_app/app.R')) {
+  shiny::shinyAppFile('/home/jenswaaben/phd/courses/stats_personal/statistics/apps/discrete_distributions/beta_negative_binomial_app/app.R')
+}
+```
+
+## Real-world Examples
+
+- Number of patients screened before finding 10 eligible participants in a clinical trial (with variable eligibility rates)
+- Number of attempts before achieving 5 successful reactions in chemistry experiments
+- Number of customers before finding 20 buyers (with variable purchase rates)

@@ -9,22 +9,14 @@ website:
     left:
       - text: "Home"
         file: index.qmd
-      - text: "An introduction to statistics"
-        file: stats_intro.qmd
+      - text: "Introduction"
+        file: 01_introduction/index.qmd
       - text: "Distributions"
-        file: distributions.qmd
-      - text: "A statistic"
-        file: "a_statistic.qmd"
-      - text: "Frequentist Statistics"
-        file: "frequentist.qmd"
-      - text: "Bayesian statistics"
-        file: bayes.qmd
-      - text: "Machine learning"
-        file: machine_learning.qmd
-      - text: "Deep learning"
-        file: deep_learning.qmd
-
-
+        file: 02_distributions/index.qmd
+      - text: "Statistical Inference"
+        file: 03_statistical_inference/index.qmd
+      - text: "Machine Learning"
+        file: 04_machine_learning/index.qmd
 
 format:
   html:

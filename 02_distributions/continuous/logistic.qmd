@@ -1,0 +1,74 @@
+# Logistic Distribution
+
+## Overview
+
+The logistic distribution is a continuous probability distribution whose cumulative distribution function (CDF) is the **logistic function**.
+
+## Description
+
+The logistic distribution is similar in shape to the normal distribution but has heavier tails. The logistic function, which gives the distribution its name, has many applications in modeling growth processes, particularly in biology and ecology.
+
+The logistic distribution is commonly used in **logistic regression**, where it models the probability of a binary outcome.
+
+## Probability Density Function
+
+$$f(x | \mu, s) = \frac{e^{-(x - \mu)/s}}{s \left(1 + e^{-(x - \mu)/s}\right)^2} = \frac{1}{s} \cdot \frac{e^{-z}}{(1 + e^{-z})^2} \quad \text{where } z = \frac{x - \mu}{s}$$
+
+## Cumulative Distribution Function
+
+The CDF is the logistic function:
+
+$$F(x | \mu, s) = \frac{1}{1 + e^{-(x - \mu)/s}} = \frac{e^{(x - \mu)/s}}{1 + e^{(x - \mu)/s}}$$
+
+Where:
+- $\mu$ = location parameter (mean)
+- $s$ = scale parameter (> 0, related to variance)
+
+## Properties
+
+- Defined on (-∞, ∞)
+- Mean = $\mu$
+- Median = $\mu$
+- Mode = $\mu$
+- Variance = $\frac{s^2 \pi^2}{3}$
+- Symmetric about $\mu$
+
+## Visualization
+
+```{r}
+#| echo: false
+library('tidyverse')
+location <- 0
+scale_vals <- c(0.5, 1, 2)
+x <- seq(-10, 10, length.out = 500)
+
+# Calculate densities for each scale
+results <- map_dfr(scale_vals, ~ {
+  tibble(x = x, y = dlogis(x, location = location, scale = .x), scale = .x)
+})
+
+results %>
+  ggplot(aes(x = x, y = y, color = factor(scale))) +
+  geom_line(size = 1) +
+  geom_vline(xintercept = location, color = 'black', linetype = 'dashed') +
+  labs(x = 'x', y = 'Density', title = 'Logistic Distribution for various scale parameters') +
+  theme_minimal(base_size = 14)
+```
+
+## Interactive App
+
+```{r}
+#| echo: false
+#| error: false
+if (requireNamespace('shiny', quietly = TRUE) && file.exists('/home/jenswaaben/phd/courses/stats_personal/statistics/apps/continuous_distributions/logistic_app/app.R')) {
+  shiny::shinyAppFile('/home/jenswaaben/phd/courses/stats_personal/statistics/apps/continuous_distributions/logistic_app/app.R')
+}
+```
+
+## Real-world Examples
+
+- Logistic regression - modeling binary outcomes
+- Modeling population growth (logistic growth model)
+- Psychometrics - item response theory
+- Finance - modeling asset returns
+- Environmental science - modeling species distribution

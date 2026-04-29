@@ -1,0 +1,45 @@
+# Hypergeometric Distribution
+
+## Overview
+
+The hypergeometric distribution is very similar to the binomial distribution, but with one crucial difference: **no replacement**.
+
+## Description
+
+In the binomial distribution, each trial is independent with the same probability of success. In the hypergeometric distribution, every trial has a different probability of success because items are not replaced after being drawn.
+
+This means that the probability changes after each draw, unlike in the binomial distribution where trials are independent.
+
+## Probability Density Function
+
+$$Prob(X = k) = \frac{\binom{K}{k} \binom{N-K}{n-k}}{\binom{N}{n}}$$
+
+Where:
+- $N$ = total population size
+- $n$ = number of trials (draws)
+- $K$ = total number of Successes in the initial population
+- $k$ = number of observed successes
+- $\binom{K}{k}$ = number of ways to select k successes from K total successes
+- $\binom{N-K}{n-k}$ = number of ways the remaining failures can be arranged
+- $\binom{N}{n}$ = total number of different ways to choose n samples from N total samples
+
+## Interpretation
+
+In other words: If there are a lot of ways to choose the amount of successes from total successes, and the amount of failures from total failures in n trials, there is a large probability.
+
+## Interactive App
+
+```{r}
+#| echo: false
+#| error: false
+if (requireNamespace('shiny', quietly = TRUE) && file.exists('/home/jenswaaben/phd/courses/stats_personal/statistics/apps/discrete_distributions/hypergeometric_app/app.R')) {
+  shiny::shinyAppFile('/home/jenswaaben/phd/courses/stats_personal/statistics/apps/discrete_distributions/hypergeometric_app/app.R')
+}
+```
+
+## Real-world Examples
+
+- Drawing cards from a deck without replacement
+- Quality control: probability of finding k defective items in a sample of n items from a batch of N
+- Lottery draws
+- Ecological sampling: catching and counting species

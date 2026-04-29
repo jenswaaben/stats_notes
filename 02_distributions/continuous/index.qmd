@@ -1,0 +1,14 @@
+# Continuous Distributions
+
+Continuous distributions describe phenomena that exist on a continuous number line.
+
+- [Normal](normal.qmd)
+- [Beta](beta.qmd)
+- [Logistic Normal](logistic_normal.qmd)
+- [Chi](chi.qmd)
+- [Chi-Squared](chi_squared.qmd)
+- [Exponential](exponential.qmd)
+- [F](f.qmd)
+- [Student's T](student_t.qmd)
+- [Logistic](logistic.qmd)
+- [Gamma](gamma.qmd)

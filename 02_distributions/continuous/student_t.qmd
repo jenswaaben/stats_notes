@@ -1,0 +1,75 @@
+# Student's T Distribution
+
+## Overview
+
+Student's t distribution is one of the most commonly used distributions in statistical inference, particularly for hypothesis testing with **small sample sizes**.
+
+## Description
+
+The t distribution was discovered by William Sealy Gosset (who published under the pseudonym "Student") while working for the Guinness brewery. It is the distribution of the standardized sample mean when the true population mean is unknown and must be estimated from the sample.
+
+If $Z \sim N(0, 1)$ is a standard normal random variable, and $V \sim \chi^2_\nu$ is an independent chi-squared random variable with $\nu$ degrees of freedom, then:
+
+$$T = \frac{Z}{\sqrt{V / \nu}} \sim t_\nu$$
+
+The t distribution looks similar to the normal distribution but has **heavier tails**, meaning it has more probability in the tails and less in the center compared to the normal distribution. As the degrees of freedom increase, the t distribution approaches the normal distribution.
+
+## Probability Density Function
+
+$$f(x | \nu) = \frac{\Gamma\left(\frac{\nu + 1}{2}\right)}{\sqrt{\nu \pi} \Gamma\left(\frac{\nu}{2}\right)} \left(1 + \frac{x^2}{\nu}\right)^{-(\nu + 1)/2} \quad \text{for all } x\in\mathbb{R}$$
+
+Where:
+- $\nu$ (nu) = degrees of freedom (positive integer)
+- $\Gamma(\cdot)$ = Gamma function
+
+## Properties
+
+- Defined on (-∞, ∞)
+- Mean = 0 (for $\nu > 1$)
+- Median = 0
+- Mode = 0
+- Variance = $\frac{\nu}{\nu - 2}$ (for $\nu > 2$)
+- Symmetric about 0
+- Approaches standard normal as $\nu \to \infty$
+- Kurtosis > 3 (more peaked and heavier tails than normal)
+
+## Visualization
+
+```{r}
+#| echo: false
+library('tidyverse')
+df_vals <- c(1, 2, 5, 10, 30)
+x <- seq(-5, 5, length.out = 500)
+
+# Calculate densities for each df
+results <- map_dfr(df_vals, ~ {
+  tibble(x = x, y = dt(x, df = .x), df = .x)
+})
+
+# Add normal distribution for comparison
+results %>
+  add_row(x = x, y = dnorm(x), df = 'Normal', .before = 1) %>
+  ggplot(aes(x = x, y = y, color = factor(df))) +
+  geom_line(size = 1) +
+  labs(x = 'x', y = 'Density', title = 'Student t Distribution for various degrees of freedom') +
+  theme_minimal(base_size = 14)
+```
+
+## Interactive App
+
+```{r}
+#| echo: false
+#| error: false
+if (requireNamespace('shiny', quietly = TRUE) && file.exists('/home/jenswaaben/phd/courses/stats_personal/statistics/apps/continuous_distributions/student_t_app/app.R')) {
+  shiny::shinyAppFile('/home/jenswaaben/phd/courses/stats_personal/statistics/apps/continuous_distributions/student_t_app/app.R')
+}
+```
+
+## Real-world Examples
+
+- One-sample t-test for population mean
+- Two-sample t-test for comparing two means
+- Paired t-test for comparing paired observations
+- Confidence intervals for the population mean (small samples or unknown variance)
+- Regression coefficients in linear regression
+- Small sample inference when population variance is unknown
