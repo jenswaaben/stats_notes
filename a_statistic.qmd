@@ -1,0 +1,95 @@
+```{r}
+#| message: false
+#| echo: false
+library('tidyverse', verbose = FALSE)
+library('patchwork')
+set.seed(463)
+cust_theme <- function(){
+    theme_minimal(base_size = 20) + 
+    theme(panel.background = element_rect(fill = NA, color = 'black'))
+}
+```
+
+## What is a statistic? 
+
+A statistic is some number that is calculated from a population. The most used statistic is the mean or average. Most people have an intuitive understanding of means and the like. The standard deviation of data is also a statistic. Where more people get confused, is when we start talking about distributions of statistics. The "correct" answer is sometimes reffered to as a parameter, not a statistic. It is important to know the difference. It is easiest with some examples. 
+
+\
+
+Let us simulate some normally-distributed data: 
+
+
+```{r}
+#| echo: true
+#| out-width: 50%
+#| fig-align: center
+data <- tibble(value = rnorm(100, 150, 20))
+ggplot(data = data, mapping = aes(x = value)) + 
+    geom_histogram(bins = 25) + 
+    theme_minimal(base_size = 20) + 
+    theme(panel.background = element_rect(fill = NA, color = 'black'))
+```
+
+Some of these statistics could be the mean or standard deviation. 
+
+
+```{r}
+#| echo: true
+mean(data |> pull(value))
+sd(data |> pull(value))
+```
+
+These make sense - it is just a calculation on the data. They are often represented by the greek letters $\mu$ and $\sigma$ respectively. Let us check it out for a exponential as well as a normal distribution. 
+
+
+```{r}
+#| out-width: 50%
+#| echo: false
+#| fig-asp: 0.6
+#| fig-align: center
+n <- 200
+rate = 2
+data_exp <- tibble(value = rexp(n = n, rate = rate))
+num_mean_exp <- mean(data_exp |> pull(value))
+num_sd_exp <- var(data_exp |> pull(value))
+real_mean_exp <- 1 / rate
+data_norm <- tibble(value = rnorm(n = n, 100, 10))
+num_mean_norm <- mean(data_norm |> pull(value))
+
+p_norm <- ggplot(data = data_norm, mapping = aes(x = value)) + 
+    geom_density(fill = 'deepskyblue', color = NA) + 
+    cust_theme() + 
+    geom_function(fun = dnorm, linetype = 'dashed', linewidth = 1, args = list(mean = 100, sd = 10)) + 
+    geom_vline(xintercept = num_mean_norm, linewidth = 0.8, linetype = 3) 
+
+p_exp <- ggplot(data = data_exp, mapping = aes(x = value)) + 
+    geom_density(fill = 'deepskyblue', color = NA) + 
+    cust_theme() + 
+    geom_function(fun = dexp, linetype = 'dashed', linewidth = 1, args = list(rate = rate)) + 
+    geom_vline(xintercept = num_mean_exp, linewidth = 0.8, linetype = 3) #+ 
+    #geom_vline(xintercept = real_mean_exp, linewidth = 0.8, linetype = 5)
+
+
+p_norm + p_exp
+num_sd_exp
+1 / rate**2
+```
+
+We can see that it fits well when we just calculate the statistics. The problem arises when we use some analytical solutions for the statistics that have been calculated from formulas when we are not using the correct formula. E.g. when we are using the formula for standard deviation of an exponential on something that is not an exponential. There is an extra layer of complication. When we are calculating statistics on statistics. For example the standard error of the mean (SEM). This is the standard deviation for the calculated mean.
+
+\
+
+#### SEM (as an example): 
+
+The standard error of the mean is the standard deviation en the mean. The problem is that we usually cannot estimate this. So we simply use the formula: 
+
+$$ \sigma_x^- = \frac{\sigma}{\sqrt{n}}$$
+
+This formula makes some assumptions. It assumes (correctly) that when the  Let us see it illustrated: 
+
+```{r}
+#| echo: true
+
+#n_norm
+
+```

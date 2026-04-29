@@ -13,6 +13,10 @@ website:
         file: stats_intro.qmd
       - text: "Distributions"
         file: distributions.qmd
+      - text: "A statistic"
+        file: "a_statistic.qmd"
+      - text: "Frequentist Statistics"
+        file: "frequentist.qmd"
       - text: "Bayesian statistics"
         file: bayes.qmd
       - text: "Machine learning"

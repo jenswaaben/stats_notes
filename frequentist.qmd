@@ -1,1 +1,7 @@
-## Hvasså 
+## Frequentist statistics: 
+
+Frequentist statistics treats probability the same as frequencies. It draws conclusions about the underlying phenomenon by only considering the data we can see. Of course there is still room for statistical assumptions (some would say they are too important in frequentist statistics...). Like all other statistical inference, the goal of frequentist inference is to make inferences (estimate some aspect of, give information on) on a statistic. This could be a mean, or any other number inferred from a sample. 
+
+\
+
+Let us imag
